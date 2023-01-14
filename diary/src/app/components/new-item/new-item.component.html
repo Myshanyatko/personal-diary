@@ -20,6 +20,17 @@
       </span>
     </p-header>
   </p-editor>
-  <p-button label="Click" (onClick)="newItem()"></p-button>
+  <p-fileUpload
+    name="myfile[]"
+    id="upload"
+    #uploads
+    accept="image/*"
+    [fileLimit]="1"
+    [customUpload]="true"
+    (uploadHandler)="uploadImage($event)"
+    chooseLabel="Прикрепить фотографию"
+    
+  ></p-fileUpload>
+  <p-button label="Добавить" (click)="uploads.upload()"></p-button>
 </form>
-  <div id="editor" class="editor"></div>
+<div id="editor" class="editor"></div>

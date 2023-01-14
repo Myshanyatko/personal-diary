@@ -14,10 +14,14 @@ import { EditorModule } from 'primeng/editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FieldsetModule} from 'primeng/fieldset';
 import {CardModule} from 'primeng/card';
+import {FileUploadModule} from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, ItemListComponent, NewItemComponent],
   imports: [
+    HttpClientModule,
     EditorModule,
+    FileUploadModule,
     FieldsetModule,
     CardModule,
     BrowserModule,

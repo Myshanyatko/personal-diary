@@ -20,20 +20,32 @@ export class NewItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  
-    var x = document.getElementById("editor");
-x!.innerHTML = " I like <i>Coffee</i>";
-   
+    var x = document.getElementById('editor');
+    x!.innerHTML = ' I like <i>Coffee</i>';
+
     this.itemForm = this.fb.group({
-      content: new FormControl('<p>hi</p>'),
+      content: new FormControl(),
+      image: new FormControl(),
     });
   }
-  newItem() {
+  newItem(file: File) {
     this.itemService.createItem({
       content: this.itemForm.value.content,
       date: Timestamp.now(),
       id: '',
       img: '',
-    });
+    }, file);
+
+    
+  }
+  uploadImage(event: HTMLInputElement) {
+    debugger;
+    if (event.files != null) {
+      const file = event.files[0];
+      this.itemService.uploadImage(file);
+      this.newItem(file)
+    }
+   
+    
   }
 }

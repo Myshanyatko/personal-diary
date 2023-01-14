@@ -2,7 +2,7 @@
 <p-card class="item" *ngFor="let item of items$ | async">
   <p-header class="header">
     <div class="header__time">
-      <p>{{ item.date.seconds * 1000 | date : "dd.MM.yyyy  hh:mm" }}</p>
+      <p>{{ item.date.seconds * 1000 | date : "hh:mm" }}</p>
     </div>
     <div class="header__buttons">
       <i class="pi pi-pencil header__buttons__button-edit"></i>
