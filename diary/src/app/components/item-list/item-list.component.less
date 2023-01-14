@@ -1,0 +1,34 @@
+@import (reference) "../../../styles.less";
+.p-card {
+  background-color: @grey;
+  padding: 20px;
+  width: 800px;
+  margin: 20px auto;
+}
+.p-card-body{
+    padding: 0 !important;
+}
+.header {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 50px;
+  p {
+    margin: 0;
+  }
+}
+.header__buttons {
+  text-align: right;
+}
+.header__buttons__button-edit,
+.header__buttons__button-delete {
+  margin-left: 20px;
+  cursor: pointer;
+}
+.content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 50px;
+}
+.content__img img {
+  width: 200px;
+}

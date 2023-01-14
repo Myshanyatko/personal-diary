@@ -1,1 +1,23 @@
-<p>item-list works!</p>
+<p-button label="Add record" routerLink="/new-item"></p-button>
+<p-card class="item" *ngFor="let item of items$ | async">
+  <p-header class="header">
+    <div class="header__time">
+      <p>{{ item.date.seconds * 1000 | date : "dd.MM.yyyy  hh:mm" }}</p>
+    </div>
+    <div class="header__buttons">
+      <i class="pi pi-pencil header__buttons__button-edit"></i>
+      <i class="pi pi-trash header__buttons__button-delete" (click)="deleteItem(item)"></i>
+    </div>
+    
+  </p-header>
+  <div class="content">
+    <div class="content__text"><p [innerHTML]="item.content"></p></div>
+    <div class="content__img">
+      <div class="" *ngIf="item.img as img">
+        <img [src]="img" />
+      </div>
+    </div>
+  </div>
+</p-card>
+
+

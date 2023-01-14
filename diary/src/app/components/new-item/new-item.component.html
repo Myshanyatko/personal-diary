@@ -1,0 +1,25 @@
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+<form [formGroup]="itemForm">
+  <h3>Custom Toolbar</h3>
+  <!-- <p-editor formControlName="content"  [formats]="['bold', 'color']" [style]="{'height':'320px'}"></p-editor> -->
+  <p-editor formControlName="content">
+    <p-header>
+      <span class="ql-format-group">
+        <span title="Bold" class="ql-format-button ql-bold">
+          <button aria-label="Bold" class="ql-bold"></button>
+        </span>
+        <span class="ql-format-separator"></span>
+        <span title="Italic" class="ql-format-button ql-italic">
+          <button aria-label="Italic" class="ql-italic"></button>
+        </span>
+        <span class="ql-format-separator"></span>
+        <span title="Underline" class="ql-format-button ql-underline">
+          <button aria-label="Underline" class="ql-underline"></button>
+        </span>
+        <span class="ql-format-separator"></span>
+      </span>
+    </p-header>
+  </p-editor>
+  <p-button label="Click" (onClick)="newItem()"></p-button>
+</form>
+  <div id="editor" class="editor"></div>
