@@ -33,27 +33,27 @@ export class ItemService {
   }
 
   uploadImage(file: File) {
-    console.log(file.name);
-
     const storageRef = ref(this.storage, `images/${file.name}`);
-    uploadBytes(storageRef, file).then((snapshot) => {
-      console.log(snapshot.ref);
-    });
+    uploadBytes(storageRef, file).then(
+      (snapshot) => alert(snapshot.ref),
+      (err) => alert(err)
+    );
   }
   // добавить новую запись
-  createItem(item: Item, file?: File) {
+  async createItem(item: Item, file?: File) {
     item.id = doc(collection(this.firestore, `id`)).id;
     if (file) {
-      this.uploadImage(file);
-      return getDownloadURL(ref(this.storage, `images/${file.name}`)).then(
-        (url) =>
+      const storageRef = ref(this.storage, `images/${file.name}`);
+      uploadBytes(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then((url) =>
           addDoc(this.collect, {
             content: item.content,
             id: item.id,
             date: item.date,
             img: url,
           })
-      );
-    } else return addDoc(this.collect, item);
+        );
+      });
+    } else addDoc(this.collect, item);
   }
 }
