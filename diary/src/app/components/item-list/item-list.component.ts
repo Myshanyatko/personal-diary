@@ -1,18 +1,12 @@
-import { doc, getDoc, getDocs, getFirestore } from 'firebase/firestore';
+import { AuthService } from './../../services/auth.service';
+
 import { ItemService } from './../../services/item.service';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {
-  collection,
-  collectionData,
   Firestore,
-  onSnapshot,
-  QuerySnapshot,
 } from '@angular/fire/firestore';
-import { map, Observable } from 'rxjs';
+import {  Observable } from 'rxjs';
 import { Item } from 'src/app/models/Item';
-import { Database } from '@angular/fire/database';
-import { onValue, ref } from 'firebase/database';
-import { initializeApp } from '@angular/fire/app';
 
 @Component({
   selector: 'app-item-list',
@@ -21,11 +15,14 @@ import { initializeApp } from '@angular/fire/app';
 })
 export class ItemListComponent implements OnInit {
   items$:  Observable<Item[]> = this.itemService.getItems()
-  constructor(private itemService: ItemService, private firestore: Firestore) {}
+  constructor(private authService: AuthService, private itemService: ItemService, private firestore: Firestore) {}
 
   ngOnInit(): void {
   }
   deleteItem(item: Item){
     this.itemService.deleteItem(item)
+  }
+  logout(){
+this.authService.logout()
   }
 }

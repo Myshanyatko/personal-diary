@@ -21,6 +21,7 @@
     "@angular/router": "^14.2.0",
     "@editorjs/editorjs": "^2.26.4",
     "firebase": "^9.15.0",
+    "firebaseui": "^6.0.2",
     "ngx-quill": "^20.0.1",
     "primeicons": "^6.0.1",
     "primeng": "^15.0.1",

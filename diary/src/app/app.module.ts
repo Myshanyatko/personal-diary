@@ -17,11 +17,14 @@ import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { AuthComponent } from './components/auth/auth.component';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, NewItemComponent, EditItemComponent],
+  declarations: [AppComponent, ItemListComponent, NewItemComponent, EditItemComponent, AuthComponent],
   imports: [
     HttpClientModule,
     EditorModule,
+    InputTextModule,
     FileUploadModule,
     FieldsetModule,
     CardModule,

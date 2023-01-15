@@ -37,8 +37,8 @@ export class EditItemComponent implements OnInit {
       this.itemForm.get('content')?.setValue(item.content);
     });
   }
+  
   editItem(event: HTMLInputElement) {
-    debugger
     if (event.files != null) {
       const file = event.files[0];
        this.itemService.editItem(

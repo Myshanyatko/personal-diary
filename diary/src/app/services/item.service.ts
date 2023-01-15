@@ -30,7 +30,8 @@ import firebase from 'firebase/app';
   providedIn: 'root',
 })
 export class ItemService {
-  collect = collection(this.firestore, 'items');
+   id = sessionStorage.getItem('email')
+  collect = collection(this.firestore, 'users/'+this.id+'/items');
   storage = getStorage();
   editedItemId = '';
   constructor(private firestore: Firestore) {}
@@ -72,7 +73,7 @@ export class ItemService {
   }
   //редактировать запись
   async editItem(item: Item, file?: File) {
-    const docRef = doc(this.firestore, 'items', this.editedItemId);
+    const docRef = doc(this.collect, this.editedItemId);
     if (file) {
       const storageRef = ref(this.storage, `images/${file.name}`);
       uploadBytes(storageRef, file).then(() => {

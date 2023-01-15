@@ -1,0 +1,14 @@
+<form [formGroup]="authForm">
+  <div class="">
+    <input type="text" pInputText formControlName="email" placeholder="Логин" />
+  </div>
+  <div class="">
+    <input
+      type="password"
+      pInputText
+      placeholder="Пароль"
+      formControlName="password"
+    />
+  </div>
+  <button pButton (click)="login()" label="Войти"></button>
+</form>

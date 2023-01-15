@@ -1,4 +1,5 @@
 <div class="item-list-container">
+  <a (click)="logout()">Выйти</a>
   <h1 class="title">Личный дневник</h1>
   <p-button label="Новая запись" routerLink="/new-item" class="button-new-item"></p-button>
   <p-card class="item" *ngFor="let item of items$ | async">
