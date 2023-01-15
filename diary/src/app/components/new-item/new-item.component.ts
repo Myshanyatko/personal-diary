@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ItemService } from './../../services/item.service';
 import { Observable } from 'rxjs';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
@@ -15,7 +16,8 @@ export class NewItemComponent implements OnInit {
   constructor(
     private firestore: Firestore,
     private fb: FormBuilder,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +39,6 @@ export class NewItemComponent implements OnInit {
         file
       );
     }
+    this.router.navigate(['/'])
   }
 }

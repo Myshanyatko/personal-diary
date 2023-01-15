@@ -7,7 +7,7 @@
         <p>{{ item.date.seconds * 1000 | date : "hh:mm" }}</p>
       </div>
       <div class="header__buttons">
-        <i class="pi pi-pencil header__buttons__button-edit"></i>
+      <i class="pi pi-pencil header__buttons__button-edit" [routerLink]="'/edit-item/'+item.id"></i>
         <i
           class="pi pi-trash header__buttons__button-delete"
           (click)="deleteItem(item)"

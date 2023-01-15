@@ -16,8 +16,9 @@ import {FieldsetModule} from 'primeng/fieldset';
 import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
+import { EditItemComponent } from './components/edit-item/edit-item.component';
 @NgModule({
-  declarations: [AppComponent, ItemListComponent, NewItemComponent],
+  declarations: [AppComponent, ItemListComponent, NewItemComponent, EditItemComponent],
   imports: [
     HttpClientModule,
     EditorModule,

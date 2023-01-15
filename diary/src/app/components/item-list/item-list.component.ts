@@ -16,7 +16,6 @@ import { initializeApp } from '@angular/fire/app';
 
 @Component({
   selector: 'app-item-list',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.less'],
 })
@@ -25,9 +24,6 @@ export class ItemListComponent implements OnInit {
   constructor(private itemService: ItemService, private firestore: Firestore) {}
 
   ngOnInit(): void {
-    this.items$.subscribe(item => console.log(item))
-    
-    
   }
   deleteItem(item: Item){
     this.itemService.deleteItem(item)
