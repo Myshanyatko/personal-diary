@@ -1,31 +1,35 @@
 import { AuthService } from './../../services/auth.service';
 
 import { ItemService } from './../../services/item.service';
-import { Component, OnInit} from '@angular/core';
-import {
-  Firestore,
-} from '@angular/fire/firestore';
-import {  Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { Item } from 'src/app/models/Item';
-import { Message } from 'primeng-lts/api';
 
+// компонент главной страницы - списка записей
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.less'],
-  animations: [  ]
 })
 export class ItemListComponent implements OnInit {
-  items$:  Observable<Item[]> = this.itemService.getItems()
- 
-  constructor(private authService: AuthService, private itemService: ItemService, private firestore: Firestore) {}
+  // взяли поток записей из firebase
+  items$: Observable<Item[]> = this.itemService.getItems();
 
-  ngOnInit(): void {
+  constructor(
+    private authService: AuthService,
+    private itemService: ItemService
+  ) {}
+
+  ngOnInit(): void {}
+
+  // удаление записи
+  deleteItem(item: Item) {
+    this.itemService.deleteItem(item);
   }
-  deleteItem(item: Item){
-    this.itemService.deleteItem(item)
-  }
-  logout(){
-this.authService.logout()
+
+  // выход из аккаунта
+  logout() {
+    this.authService.logout();
   }
 }

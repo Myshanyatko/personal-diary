@@ -20,6 +20,7 @@
           </span>
         </p-header>
       </p-editor>
+
       <p-fileUpload
         name="myfile[]"
         class="fileUpload"
@@ -32,13 +33,30 @@
         chooseLabel="Прикрепить фотографию"
       ></p-fileUpload>
     </div>
+    <p
+      *ngIf="
+        itemForm.get('content')?.invalid &&
+        (itemForm.get('content')?.dirty ||
+          itemForm.get('content')?.touched ||
+          error)
+      "
+      class="error"
+    >
+      Нельзя создать пустую запись
+    </p>
     <div class="buttons">
       <p-button
         label="Добавить"
         (click)="uploadFile.upload()"
         class="button-submit"
       ></p-button>
-      <button pButton type="button" label="Назад" class="button-back" routerLink="/"></button>
+      <button
+        pButton
+        type="button"
+        label="Назад"
+        class="button-back"
+        routerLink="/"
+      ></button>
     </div>
   </form>
 </div>

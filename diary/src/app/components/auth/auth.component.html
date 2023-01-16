@@ -1,7 +1,7 @@
 <form [formGroup]="authForm" class="form">
   <h1 class="title">Авторизация</h1>
   <div class="inputs">
-    <div>
+    <div class="input">
       <input
         class="input"
         type="text"
@@ -9,6 +9,17 @@
         formControlName="email"
         placeholder="Логин"
       />
+      <p
+        *ngIf="
+          authForm.get('email')?.invalid &&
+          (authForm.get('email')?.dirty ||
+            authForm.get('email')?.touched ||
+            error)
+        "
+        class="error"
+      >
+        Введите верный логин
+      </p>
     </div>
     <div>
       <input
@@ -18,6 +29,17 @@
         placeholder="Пароль"
         formControlName="password"
       />
+      <p
+        *ngIf="
+          authForm.get('password')?.invalid &&
+          (authForm.get('password')?.dirty ||
+            authForm.get('password')?.touched ||
+            error)
+        "
+        class="error"
+      >
+        Введите пароль
+      </p>
     </div>
   </div>
   <button pButton (click)="login()" label="Войти" class="button-login"></button>

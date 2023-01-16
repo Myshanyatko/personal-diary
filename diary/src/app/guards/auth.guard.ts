@@ -21,7 +21,9 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (!sessionStorage.getItem('email')) {
+    // проверка, выполнен ли вход в аккаунт
+    // (выполнен, если в sessionStorage хранится id)
+    if (!sessionStorage.getItem('id')) {
       this.router.navigate(['auth']);
       return false;
     } else return true;

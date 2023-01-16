@@ -1,45 +1,61 @@
 <div class="edit-item-container">
-    <form [formGroup]="itemForm" *ngIf="item$ | async as item" class="form">
-      <h1 class="form__title">Редактирование записи</h1>
-      <div class="inputs">
-        <p-editor formControlName="content">
-          <p-header>
-            <span class="ql-format-group">
-              <span title="Bold" class="ql-format-button ql-bold">
-                <button aria-label="Bold" class="ql-bold"></button>
-              </span>
-              <span class="ql-format-separator"></span>
-              <span title="Italic" class="ql-format-button ql-italic">
-                <button aria-label="Italic" class="ql-italic"></button>
-              </span>
-              <span class="ql-format-separator"></span>
-              <span title="Underline" class="ql-format-button ql-underline">
-                <button aria-label="Underline" class="ql-underline"></button>
-              </span>
-              <span class="ql-format-separator"></span>
+  <form [formGroup]="itemForm" *ngIf="item$ | async as item" class="form">
+    <h1 class="form__title">Редактирование записи</h1>
+    <div class="inputs">
+      <p-editor formControlName="content">
+        <p-header>
+          <span class="ql-format-group">
+            <span title="Bold" class="ql-format-button ql-bold">
+              <button aria-label="Bold" class="ql-bold"></button>
             </span>
-          </p-header>
-        </p-editor>
-        <p-fileUpload
-          name="myfile[]"
-          class="fileUpload"
-          #uploadEditFile
-          accept="image/*"
-          [fileLimit]="1"
-          [customUpload]="true"
-          [showUploadButton]="false"
-          (uploadHandler)="editItem($event)"
-          chooseLabel="Изменить фотографию"
-        ></p-fileUpload>
-      </div>
-      <div class="buttons">
-        <p-button
-          label="Сохранить"
-          (click)="uploadEditFile.upload()"
-          class="button-submit"
-        ></p-button>
-        <button pButton type="button" label="Назад" class="button-back" routerLink="/"></button>
-      </div>
-    </form>
-  </div>
-  
+            <span class="ql-format-separator"></span>
+            <span title="Italic" class="ql-format-button ql-italic">
+              <button aria-label="Italic" class="ql-italic"></button>
+            </span>
+            <span class="ql-format-separator"></span>
+            <span title="Underline" class="ql-format-button ql-underline">
+              <button aria-label="Underline" class="ql-underline"></button>
+            </span>
+            <span class="ql-format-separator"></span>
+          </span>
+        </p-header>
+      </p-editor>
+      <p-fileUpload
+        name="myfile[]"
+        class="fileUpload"
+        #uploadEditFile
+        accept="image/*"
+        [fileLimit]="1"
+        [customUpload]="true"
+        [showUploadButton]="false"
+        (uploadHandler)="editItem($event)"
+        chooseLabel="Изменить фотографию"
+      ></p-fileUpload>
+    </div>
+    <p
+      *ngIf="
+        itemForm.get('content')?.invalid &&
+        (itemForm.get('content')?.dirty ||
+          itemForm.get('content')?.touched ||
+          error)
+      "
+      class="error"
+    >
+      Нельзя создать пустую запись
+    </p>
+    <div class="buttons">
+      <p-button
+        label="Сохранить"
+        (click)="uploadEditFile.upload()"
+        class="button-submit"
+      ></p-button>
+      <button
+        pButton
+        type="button"
+        label="Назад"
+        class="button-back"
+        routerLink="/"
+      ></button>
+    </div>
+  </form>
+</div>

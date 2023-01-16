@@ -6,6 +6,7 @@ import { ItemListComponent } from './components/item-list/item-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// роутинг
 const routes: Routes = [
   { path: '', component: ItemListComponent, canActivate: [AuthGuard] },
   { path: 'auth', component: AuthComponent },

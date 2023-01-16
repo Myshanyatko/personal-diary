@@ -1,10 +1,13 @@
 import { Router } from '@angular/router';
 import { ItemService } from './../../services/item.service';
-import { Observable } from 'rxjs';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { addDoc, Timestamp } from 'firebase/firestore';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-new-item',
@@ -13,32 +16,41 @@ import { addDoc, Timestamp } from 'firebase/firestore';
 })
 export class NewItemComponent implements OnInit {
   itemForm!: FormGroup;
+  error = false;
+
   constructor(
-    private firestore: Firestore,
-    private fb: FormBuilder,
     private itemService: ItemService,
+    private fb: FormBuilder,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    // инициация формы редактирования записи
     this.itemForm = this.fb.group({
-      content: new FormControl(),
-      image: new FormControl(),
+      content: new FormControl('', [Validators.required]),
     });
   }
+
+  // функкция создания новой записи
   newItem(event: HTMLInputElement) {
-    if (event.files != null) {
-      const file = event.files[0];
-      this.itemService.createItem(
-        {
-          content: this.itemForm.value.content,
-          date: Timestamp.now(),
-          id: '',
-          img: '',
-        },
-        file
-      );
+    // проверка валидности полей
+    if (!this.itemForm.value.content) {
+      this.error = true;
+    } else {
+      if (event.files != null) {
+        const file = event.files[0];
+        this.itemService.createItem(
+          {
+            content: this.itemForm.value.content,
+            date: Timestamp.now(),
+            id: '',
+            img: '',
+          },
+          file
+        );
+      }
+      this.error = false;
+      this.router.navigate(['/']);
     }
-    this.router.navigate(['/'])
   }
 }
