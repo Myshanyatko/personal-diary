@@ -1,3 +1,4 @@
+import { MessagesService } from './messages.service';
 import { from, Observable } from 'rxjs';
 import {
   Timestamp,
@@ -7,6 +8,8 @@ import {
   DocumentData,
   setDoc,
   updateDoc,
+  query,
+  orderBy,
 } from 'firebase/firestore';
 import { Item } from './../models/Item';
 import { Injectable } from '@angular/core';
@@ -24,23 +27,25 @@ import {
 } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getDatabase } from '@angular/fire/database';
-import { set } from 'firebase/database';
+import { orderByChild, set } from 'firebase/database';
 import firebase from 'firebase/app';
 @Injectable({
   providedIn: 'root',
 })
 export class ItemService {
-   id = sessionStorage.getItem('email')
-  collect = collection(this.firestore, 'users/'+this.id+'/items');
+  id = sessionStorage.getItem('email');
+  collect = collection(this.firestore, 'users/' + this.id + '/items');
   storage = getStorage();
   editedItemId = '';
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    private messagesService: MessagesService
+  ) {}
 
   // получаем записи с firebase
   getItems(): Observable<Item[]> {
-    return collectionData(this.collect, { idField: 'id' }) as Observable<
-      Item[]
-    >;
+    const q = query(this.collect, orderBy('date', 'desc'));
+    return collectionData(q, { idField: 'id' }) as Observable<Item[]>;
   }
   getItem(id: string): Observable<Item> {
     const docRef = doc(this.collect, id);
@@ -49,9 +54,10 @@ export class ItemService {
   }
 
   deleteItem(item: Item) {
-    console.log(item.id);
-    let docRef = doc(this.firestore, 'items', item.id);
-    return deleteDoc(docRef);
+    let docRef = doc(this.firestore, 'users/' + this.id + '/items', item.id);
+    return deleteDoc(docRef)
+      .then(() => this.messagesService.success('запись успешно удалена'))
+      .catch((err) => this.messagesService.error(err));
   }
 
   // добавить новую запись
@@ -67,9 +73,11 @@ export class ItemService {
             date: item.date,
             img: url,
           })
-        );
+        ).then(() => this.messagesService.success('запись успешно создана'))
+        .catch((err) => this.messagesService.error(err));
       });
-    } else addDoc(this.collect, item);
+    } else addDoc(this.collect, item).then(() => this.messagesService.success('запись успешно создана'))
+    .catch((err) => this.messagesService.error(err));
   }
   //редактировать запись
   async editItem(item: Item, file?: File) {
@@ -83,12 +91,16 @@ export class ItemService {
             date: item.date,
             img: url,
           })
+            .then(() => this.messagesService.success('запись успешно изменена'))
+            .catch((err) => this.messagesService.error(err))
         );
       });
     } else
       updateDoc(docRef, {
         content: item.content,
         date: item.date,
-      });
+      })
+        .then(() => this.messagesService.success('запись успешно изменена'))
+        .catch((err) => this.messagesService.error(err));
   }
 }

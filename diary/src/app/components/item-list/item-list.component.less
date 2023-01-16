@@ -1,18 +1,26 @@
 @import (reference) "../../../styles.less";
-.title{
+
+.button-logout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  .secondary-button();
+}
+.title {
   text-align: center;
 }
-.button-new-item{
-  margin-left: 268px;
+.items {
+  margin: 0 auto;
+  width: 800px;
 }
 ::ng-deep .p-card {
   padding: 20px;
   width: 800px;
-  margin: 20px auto;
-  
+  margin: 20px 0;
 }
-::ng-deep.p-card-body{
-    padding: 0 !important;
+::ng-deep.p-card-body {
+  padding: 0 !important;
 }
 .header {
   display: grid;

@@ -1,3 +1,4 @@
+import { Message } from 'primeng-lts/api';
 import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
@@ -5,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
+  msgs: Message[] = [];
   title = 'diary';
 }

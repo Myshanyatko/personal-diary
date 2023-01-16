@@ -1,14 +1,24 @@
-<form [formGroup]="authForm">
-  <div class="">
-    <input type="text" pInputText formControlName="email" placeholder="Логин" />
+<form [formGroup]="authForm" class="form">
+  <h1 class="title">Авторизация</h1>
+  <div class="inputs">
+    <div>
+      <input
+        class="input"
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Логин"
+      />
+    </div>
+    <div>
+      <input
+        class="input"
+        type="password"
+        pInputText
+        placeholder="Пароль"
+        formControlName="password"
+      />
+    </div>
   </div>
-  <div class="">
-    <input
-      type="password"
-      pInputText
-      placeholder="Пароль"
-      formControlName="password"
-    />
-  </div>
-  <button pButton (click)="login()" label="Войти"></button>
+  <button pButton (click)="login()" label="Войти" class="button-login"></button>
 </form>

@@ -1,5 +1,5 @@
 <div class="edit-item-container">
-    <form [formGroup]="itemForm" *ngIf="item$ | async as item">
+    <form [formGroup]="itemForm" *ngIf="item$ | async as item" class="form">
       <h1 class="form__title">Редактирование записи</h1>
       <div class="inputs">
         <p-editor formControlName="content">

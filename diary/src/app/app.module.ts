@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng-lts/api';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
@@ -19,9 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { AuthComponent } from './components/auth/auth.component';
 import {InputTextModule} from 'primeng/inputtext';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 @NgModule({
   declarations: [AppComponent, ItemListComponent, NewItemComponent, EditItemComponent, AuthComponent],
   imports: [
+    BrowserAnimationsModule,
+    MessagesModule,
+    MessageModule,
     HttpClientModule,
     EditorModule,
     InputTextModule,
@@ -38,7 +45,7 @@ import {InputTextModule} from 'primeng/inputtext';
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers:  [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,14 +7,17 @@ import {
 } from '@angular/fire/firestore';
 import {  Observable } from 'rxjs';
 import { Item } from 'src/app/models/Item';
+import { Message } from 'primeng-lts/api';
 
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.less'],
+  animations: [  ]
 })
 export class ItemListComponent implements OnInit {
   items$:  Observable<Item[]> = this.itemService.getItems()
+ 
   constructor(private authService: AuthService, private itemService: ItemService, private firestore: Firestore) {}
 
   ngOnInit(): void {
