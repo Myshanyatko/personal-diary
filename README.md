@@ -1,6 +1,9 @@
 # Diary
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
+
+Это тестовое задание на стажировку в Infotecs. Проект представляет собой веб-приложение личный дневник. Реализованы функции редактирования, удаления и добавления записей с прикреплением картинки. Также добавлена функция авторизации и аутентификации.
+
+Использующиеся технологии: Angular CLI, HTML, LESS, PrimeNG, Firebase.
 
 ## Development server
 
@@ -12,7 +15,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Хостинг
 
-Веб-приложение размещено на хостинге firebase, и доступно по ссылке https://personal-diary-728b3.web.app/auth
+Веб-приложение размещено на хостинге firebase и доступно по ссылке https://personal-diary-728b3.web.app/auth
 
 ## Аутентификация
 
