@@ -1,8 +1,8 @@
+
 import { MessagesService } from './messages.service';
-import { getAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { Inject, Injectable } from '@angular/core';
+import {Auth, signInWithEmailAndPassword, signOut} from '@angular/fire/auth';
 
 // сервис для авторизации
 @Injectable({
@@ -10,14 +10,14 @@ import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 })
 export class AuthService {
   constructor(
+   private auth: Auth,
     private messagesService: MessagesService,
     private router: Router
   ) {}
 
   // функция входа в аккаунт
   login(email: string, password: string) {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(this.auth, email, password)
       .then((userCredentinals) => {
         // id пользователя хранится в sessionStorage
         sessionStorage.setItem('id', userCredentinals.user.uid);
@@ -30,8 +30,7 @@ export class AuthService {
 
   // функция выхода из аккаунта
   logout() {
-    const auth = getAuth();
-    signOut(auth)
+    signOut(this.auth)
       .then(() => {
         // чистим sessionStorage
         sessionStorage.removeItem('id');

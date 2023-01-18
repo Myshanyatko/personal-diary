@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit {
   // функция для входа в аккаунт
   login() {
     // проверка на валидность полей
-    if (!this.authForm.value.password || this.authForm.value.email) {
+    if (!this.authForm.value.password || !this.authForm.value.email) {
       this.error = true;
     } else {
       this.authService.login(

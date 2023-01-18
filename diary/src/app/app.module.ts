@@ -23,6 +23,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 @NgModule({
   declarations: [AppComponent, ItemListComponent, NewItemComponent, EditItemComponent, AuthComponent],
   imports: [
