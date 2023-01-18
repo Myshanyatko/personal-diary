@@ -15,7 +15,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Хостинг
 
-Веб-приложение размещено на хостинге firebase и доступно по ссылке https://personal-diary-728b3.web.app/auth
+Веб-приложение размещено на хостинге firebase и доступно по ссылке https://personal-diary-728b3.web.app/
 
 ## Аутентификация
 
